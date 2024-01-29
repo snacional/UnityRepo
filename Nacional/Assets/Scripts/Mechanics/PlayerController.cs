@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Gameplay;
@@ -44,6 +44,8 @@ namespace Platformer.Mechanics
         public Bounds Bounds => collider2d.bounds;
 
         public GameObject bulletPrefab;
+        public GameObject bulletPrefab2;
+        public GameObject bulletPrefab3;
         public Transform firePoint;
 
         void Awake()
@@ -63,6 +65,14 @@ namespace Platformer.Mechanics
                 if (Input.GetButtonDown("Fire1"))
                 {
                     ShootBullet();
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    ShootBullet2();
+                }
+                if (Input.GetButtonDown("Fire3"))
+                {
+                    ShootBullet3();
                 }
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
@@ -155,6 +165,23 @@ namespace Platformer.Mechanics
             BulletController bulletController = bullet.GetComponent<BulletController>();
             bulletController.speed = 10f;
         }
+        void ShootBullet2()
+        {
+            // Instantiate a bullet at the fire point position and rotation
+            GameObject bullet = Instantiate(bulletPrefab2, firePoint.position, firePoint.rotation);
 
+            // Access the BulletController script and set its speed
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            bulletController.speed = 10f;
+        }
+        void ShootBullet3()
+        {
+            // Instantiate a bullet at the fire point position and rotation
+            GameObject bullet = Instantiate(bulletPrefab3, firePoint.position, firePoint.rotation);
+
+            // Access the BulletController script and set its speed
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            bulletController.speed = 10f;
+        }
     }
 }
